@@ -468,7 +468,7 @@ def update_like(request, post_id, user=""):
             postobj.num_of_likes = F('num_of_likes')-1
             postobj.save()
 
-            #generate dictionary 
+            # generate dictionary
             result = {"type": "remove"}
 
         else:
@@ -482,7 +482,7 @@ def update_like(request, post_id, user=""):
             postobj.num_of_likes = F('num_of_likes')+1
             postobj.save()
 
-            # generate dictonary 
+            # generate dictionary
             result = {"type": "add"}
 
         num_of_likes = Post.objects.filter(id=post_id).values_list("num_of_likes", flat=True)
@@ -491,7 +491,7 @@ def update_like(request, post_id, user=""):
         result["num_of_likes"] = num_of_likes[0]
 
         # generate response
-        response = json.dumps(result, default=str) 
+        response = json.dumps(result, default=str)
 
         return HttpResponse(response, content_type="application/json")
     else:
@@ -503,13 +503,12 @@ def following_posts(request):
     """
     1. Get all the post made by user followed by request user
     2. paginate
- 
     """
     if request.user.is_authenticated:
 
         userobj = util.get_user_obj_by_userId(request.user.id)
         posts = paginate(request, get_all_posts_of_user_network(request, userobj))
-        post_liked_ids = get_myliked_post(request).values_list("id",flat=True)
+        post_liked_ids = get_myliked_post(request).values_list("id", flat=True)
         return render(request, "network/following.html", {
             "allposts": posts,
             "post_liked_ids": post_liked_ids,
