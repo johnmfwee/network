@@ -1,40 +1,22 @@
 from django.urls import path
-
+from django.conf.urls.static import static
+from django.conf import settings
 from . import views
-app_name = 'network'
+
+app_name = "network"
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("post-comment/<str:action>", views.post_comment, name="post-comment"),
+    path("user-profile/<int:user_id>", views.user_profile, name="user-profile"),
+    path("edit-profile", views.edit_profile, name="edit-profile"),
+    path("following", views.following, name="following"),
+    path("follow-unfollow/<int:user_id>", views.follow_unfollow, name="follow-unfollow"),
+    path("like/<str:action>/<int:action_id>", views.like, name="like"),
     path("login", views.login_view, name="login"),
     path("logout", views.logout_view, name="logout"),
     path("register", views.register, name="register"),
-
-    path("newpost", views.newpost, name="newpost"),
-
-    path("profile/<str:user>", views.profile, name="profile"),
-    path("profile/<str:user>/<str:category>", views.profile, name="profile"),
-    path("profile/<str:user>/section/<str:category>", views.profile_section, name="profile_section"),
-
-    path("network", views.network, name="network"),
-    path("network/<str:request_type>", views.network, name="network"),
-    path("network/section/<str:section>", views.network_section, name="network_section"),
-
-    path("editpost/<int:post_id>", views.edit_post, name="editpost"),
-    path("profile/<str:user>/editpost/<int:post_id>", views.edit_post, name="editpost"),
-
-    path("savepost/<int:post_id>/<str:content>", views.save_post, name="save_post"),
-    path("profile/<str:user>/savepost/<int:post_id>/<str:content>", views.save_post, name="save_post"),
-
-    path("profile/<str:user>/deletepost/<int:post_id>", views.delete_post, name="delete_post"),
-    path("deletepost/<int:post_id>", views.delete_post, name="delete_post"),
-
-    path("like/<int:post_id>", views.update_like, name="update_like"),
-    path("profile/<str:user>/like/<int:post_id>", views.update_like, name="update_like"),
-
-    path("connect/<str:user>", views.connect, name="connect"),
-    path("connect", views.connect, name="connect"),
-
-    path("following", views.following_posts, name="following_posts"),
-
-
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

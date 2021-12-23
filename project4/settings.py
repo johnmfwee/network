@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sys
+
+MAX_UPLOAD_SIZE = 5
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,6 +35,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'network',
+    'django_countries',
+    'flatpickr',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -101,6 +106,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Global setting for flatpickr
+FLATPICKR_SETTINGS = {
+        'theme_name': 'material_blue',
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -120,3 +130,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# URL to go to for Media
+MEDIA_URL = '/media/'
+# Folder in app where the media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
