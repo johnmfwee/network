@@ -5,7 +5,8 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 
-from .models import  Post, Comment, UserProfile
+from .models import Post, Comment, UserProfile
+
 
 class CreatePostForm(forms.ModelForm):
     """
@@ -26,6 +27,7 @@ class CreatePostForm(forms.ModelForm):
         model = Post
         fields = ["content"]
 
+
 class CreateCommentForm(forms.ModelForm):
     """
     Form for creating comments (based on Comment model)
@@ -44,6 +46,7 @@ class CreateCommentForm(forms.ModelForm):
         model = Comment
         fields = ["content"]
 
+
 class CreateUserProfileForm(forms.ModelForm):
     """
     Form for editing user profile (based on UserProfile model)
@@ -56,7 +59,7 @@ class CreateUserProfileForm(forms.ModelForm):
     """
 
     date_of_birth = forms.DateField(required=False, label=_("Date of birth: "), widget=DatePickerInput(
-        options = {
+        options={
             "altFormat": "d F Y",
             "altInput": True,
             "dateFormat": "yyyy-mm-dd"
