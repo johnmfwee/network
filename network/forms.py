@@ -98,4 +98,4 @@ class CreateUserProfileForm(forms.ModelForm):
             'country': CountrySelectWidget(
                  attrs={"class": "form-control"}
             ),
-        } 
+        }

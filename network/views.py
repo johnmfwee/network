@@ -24,7 +24,7 @@ def index(request):
     # Get all posts
     all_posts = Post.objects.order_by("-date").all()
 
-    # Create page controll
+    # Create page control
     paginator = Paginator(all_posts, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

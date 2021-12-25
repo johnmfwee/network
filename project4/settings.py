@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'network',
+    'network.apps.NetworkConfig',
     'django_countries',
     'flatpickr',
     'django.contrib.admin',
